@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,26 +15,31 @@
       margin: 0;
       background-color: #f0f0f0;
     }
+
     .calendar-container {
       background-color: white;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       text-align: center;
       color: #333;
       margin-top: 0;
     }
+
     .calendar {
       width: 350px;
     }
+
     .calendar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
+
     .calendar-header button {
       background-color: #007bff;
       color: white;
@@ -43,30 +49,36 @@
       cursor: pointer;
       font-size: 14px;
     }
+
     .calendar-header button:hover {
       background-color: #0056b3;
     }
+
     .calendar-header h2 {
       margin: 0;
       font-size: 20px;
     }
+
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 5px;
       margin-bottom: 10px;
     }
+
     .weekday {
       text-align: center;
       font-weight: bold;
       color: #555;
       padding: 10px 0;
     }
+
     .days {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 5px;
     }
+
     .day {
       width: 40px;
       height: 40px;
@@ -78,13 +90,16 @@
       cursor: pointer;
       background-color: #fafafa;
     }
+
     .day:hover {
       background-color: #e3f2fd;
     }
+
     .day.other-month {
       color: #ccc;
       background-color: #f5f5f5;
     }
+
     .day.today {
       background-color: #007bff;
       color: white;
@@ -92,6 +107,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="calendar-container">
     <h1>CALENDAR</h1>
@@ -113,6 +129,10 @@
       <div class="days" id="calendar-days"></div>
     </div>
   </div>
+
+  <button onclick="getActivity()">Suggest Image</button>
+
+  <p id="activity-result"></p>
 
   <script>
     let currentDate = new Date();
@@ -175,6 +195,19 @@
     });
 
     renderCalendar();
+
+    function getActivity() {
+      fetch("/api/activity")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("activity-result").textContent =
+            "Suggested Image: " + data.activity;
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
   </script>
 </body>
+
 </html>
