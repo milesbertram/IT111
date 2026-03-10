@@ -1,5 +1,3 @@
-import requests
-
 class Event:
     def __init__(self, title, date, time, location, description):
         self.title = title
@@ -31,6 +29,16 @@ class Event:
         if description:
             self.description = description
 
+    def to_dict(self):
+        """Return event data in a JSON-serializable form."""
+        return {
+            "title": self.title,
+            "date": self.date,
+            "time": self.time,
+            "location": self.location,
+            "description": self.description,
+        }
+
 
 class Calendar:
     def __init__(self):
@@ -46,6 +54,16 @@ class Calendar:
         """Returns a list of formatted event strings."""
         return [event.display_event() for event in self.events]
 
+    def get_event_dicts(self):
+        """Return all events as a list of dictionaries."""
+        return [event.to_dict() for event in self.events]
+
+    def remove_event_by_index(self, index):
+        """Remove an event by its position in the list."""
+        if index < 0 or index >= len(self.events):
+            raise IndexError("Event index out of range")
+        self.events.pop(index)
+
 
 class User:
     def __init__(self, name, email):
@@ -60,15 +78,13 @@ class User:
     def delete_event(self, event):
         self.calendar.remove_event(event)
 
+    def delete_event_by_index(self, index):
+        self.calendar.remove_event_by_index(index)
+
     def view_my_events(self):
         """Returns a list of formatted event strings for display."""
         return self.calendar.get_events()
 
-
-# API function
-def get_activity():
-    """Fetches a random activity suggestion from the Bored API."""
-    url = "https://randomfox.ca/floof"
-    response = requests.get(url)
-    data = response.json()
-    return data["image"]
+    def view_my_events_data(self):
+        """Returns events in dictionary format for API responses."""
+        return self.calendar.get_event_dicts()
