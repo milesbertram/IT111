@@ -116,6 +116,73 @@
       line-height: 1;
     }
 
+    .calendar-header button:hover {
+      background: #005572;
+      box-shadow:
+        0px 0px 8px 2px #0AEFFF22,
+        2px 4px 8px #00000088,
+        inset 0px 6px 8px #0AEFFF66,
+        inset 0px -6px 10px #00335544;
+      color: #B8D4DA;
+      text-shadow: 1px 1px 1px #003344;
+      filter: brightness(0.85) saturate(0.9);
+    }
+
+    .calendar-header button:active {
+      background: #004460;
+      box-shadow:
+        0px 0px 4px 1px #0AEFFF11,
+        1px 2px 4px #00000088,
+        inset 0px 6px 10px #00557299,
+        inset 0px -6px 8px #0AEFFF;
+      color: #B8D4DA;
+      text-shadow: 1px 1px 1px #003344;
+      filter: brightness(0.75) saturate(0.8);
+      transform: translateY(2px);
+    }
+
+      /* Hover effect for ALL buttons */
+    .event-form button:hover,
+    .task-form button:hover,
+    .event-item button:hover,
+    .task-item button:hover {
+      background-color: #005572;
+      box-shadow:
+        0px 0px 8px 2px #0AEFFF22,
+        2px 4px 8px #00000088,
+        inset 0px 6px 8px #0AEFFF66,
+        inset 0px -6px 10px #00335544;
+      color: #B8D4DA;
+      text-shadow: 1px 1px 1px #003344;
+      filter: brightness(0.85) saturate(0.9);
+    }
+
+    /* Click (pressed) effect */
+    .event-form button:active,
+    .task-form button:active,
+    .event-item button:active,
+    .task-item button:active {
+      background-color: #004460;
+      box-shadow:
+        0px 0px 4px 1px #0AEFFF11,
+        1px 2px 4px #00000088,
+        inset 0px 6px 10px #00557299,
+        inset 0px -6px 8px #0AEFFF;
+      color: #B8D4DA;
+      text-shadow: 1px 1px 1px #003344;
+      filter: brightness(0.75) saturate(0.8);
+      transform: translateY(2px);
+    }
+
+
+    .delete-btn:hover {
+      background-color: #5a0f0f;
+    }
+
+    .delete-btn:active {
+      transform: translateY(2px);
+    }
+
     .calendar-header h2 {
       margin: 0;
       font-size: 20px;
